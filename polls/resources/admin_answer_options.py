@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 class AnswerOptionViewset(ModelViewSet):
     """Viewset для редактирования вариантов ответа на опрос (доступ только у администраторами системы)."""
 
-    permission_classes = (permissions.IsAdminUser,)
+    permission_classes = (permissions.IsAuthenticated,)
     serializer_class = AnswerOptionSerializer
 
     def get_queryset(self):

@@ -8,6 +8,6 @@ from rest_framework.viewsets import ModelViewSet
 class PollEditViewset(ModelViewSet):
     """Viewset для редактирования опросов (доступ только у администраторами системы)."""
 
-    permission_classes = (permissions.IsAdminUser,)
+    permission_classes = (permissions.IsAuthenticated,)
     queryset = Poll.objects.all()
     serializer_class = EditPollSerializer

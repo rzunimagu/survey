@@ -9,7 +9,7 @@ from rest_framework.viewsets import ModelViewSet
 class QuestionEditViewset(ModelViewSet):
     """Viewset для редактирования вопросов (доступ только у администраторами системы)."""
 
-    permission_classes = (permissions.IsAdminUser,)
+    permission_classes = (permissions.IsAuthenticated,)
     serializer_class = QuestionSerializer
 
     def get_queryset(self):
