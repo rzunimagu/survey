@@ -10,26 +10,26 @@ from .resources.user_answers_show import PollResultViewset
 from .resources.user_polls import UserActivePollViewset
 
 admin_router = routers.DefaultRouter()
-admin_router.register('active-polls', PollEditViewset, basename='polls')
+admin_router.register('active-polls', PollEditViewset, 'polls')
 
 admin_router.register(
     r'active-polls/(?P<poll_id>\d+)/questions',
     QuestionEditViewset,
-    basename='questions',
+    'questions',
 )
 
 admin_router.register(
     r'active-polls/(?P<poll_id>\d+)/questions/(?P<question_id>\d+)/options',
     AnswerOptionViewset,
-    basename='answer-options',
+    'answer-options',
 )
 
 user_router = routers.DefaultRouter()
-user_router.register('active-polls', UserActivePollViewset, basename='user-polls')
+user_router.register('active-polls', UserActivePollViewset, 'user-polls')
 user_router.register(
     'results',
     PollResultViewset,
-    basename='user-results',
+    'user-results',
 )
 
 
