@@ -107,7 +107,7 @@ LOGGING = {
     'loggers': {
         '': {
             'handlers': {'console'},
-            'level': 'DEBUG',
+            'level': os.environ.get('LOGGING_LEVEL', 'ERROR'),
             'propagate': True,
         },
     },
