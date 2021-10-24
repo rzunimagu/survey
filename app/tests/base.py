@@ -22,7 +22,7 @@ class BaseTestCase(TestCase):
 
         created_user = User.objects.create_user(**default_params)
         created_api_client = APIClient()
-        created_api_client.login(username=kwargs['username'], password=kwargs['password'])
+        created_api_client.login(username=default_params['username'], password=default_params['password'])
         return created_user, created_api_client
 
     @classmethod
