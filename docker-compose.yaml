@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  survey:
+    build: .
+    restart: always
+    ports:
+      - "8000:8000"
+    command: sh -c "
+        python manage.py migrate
+        && python manage.py runserver 0.0.0.0:8000
+      "
+    volumes:
+      - ./:/app
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: survey
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+    depends_on:
+      - db
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: survey
+    ports:
+      - "5432:5432"
