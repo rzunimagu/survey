@@ -2,11 +2,10 @@
 import logging
 
 from django.http import Http404
+from polls import constants
+from polls.models import Answer, AnswerOption, Poll, Question
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
-
-from polls import constants
-from polls.models import Question, Answer, AnswerOption, Poll
 
 logger = logging.getLogger(__name__)
 
@@ -26,10 +25,10 @@ class UserAnswerSerializer(serializers.Serializer):
 
     def __init__(self, *args, **kwargs):
         """
-        Проверим, что переданы актуальные poll_id и question_id
+        Проверим, что переданы актуальные poll_id и question_id.
+
         Добавим в сериалайзер поля, в зависимости от типа ожидаемого ответа на выбранный вопрос.
         """
-
         poll_id = kwargs.get('context').pop('poll_id', None)
         question_id = kwargs.get('context').pop('question_id', None)
         try:

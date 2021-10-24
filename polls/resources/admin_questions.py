@@ -1,13 +1,13 @@
+"""Редактирование вопросов (доступ только у администраторами системы)."""
+from polls.models import Question
+from polls.serializers.question_serializer import QuestionSerializer
 from rest_framework import permissions
 from rest_framework.exceptions import ValidationError
 from rest_framework.viewsets import ModelViewSet
 
-from polls.models import Question
-from polls.serializers.question_serializer import QuestionSerializer
-
 
 class QuestionEditViewset(ModelViewSet):
-    """Viewset для редактирования опросов (доступ только у администраторами системы)."""
+    """Viewset для редактирования вопросов (доступ только у администраторами системы)."""
 
     permission_classes = (permissions.IsAdminUser,)
     serializer_class = QuestionSerializer

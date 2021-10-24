@@ -1,10 +1,8 @@
-from datetime import date
-
-from rest_framework import permissions
-from rest_framework.viewsets import ReadOnlyModelViewSet
-
+"""Viewset для отображения списка активных опросов."""
 from polls.models import Poll
 from polls.serializers.poll_serializer import ViewPollSerializer
+from rest_framework import permissions
+from rest_framework.viewsets import ReadOnlyModelViewSet
 
 
 class UserActivePollViewset(ReadOnlyModelViewSet):

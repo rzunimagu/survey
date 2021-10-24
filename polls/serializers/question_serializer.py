@@ -1,12 +1,11 @@
 """Сериалайзер для редактирования вопросов."""
 import logging
 
-from rest_framework import serializers
-from rest_framework.exceptions import ValidationError
-
 from polls import constants
 from polls.models import AnswerOption, Question
 from polls.serializers.answer_option_serializer import AnswerOptionSerializer
+from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 
 logger = logging.getLogger(__name__)
 
@@ -39,7 +38,7 @@ class QuestionSerializer(serializers.ModelSerializer):
                 AnswerOptionSerializer(
                     instance=AnswerOption.objects.get(id=int(option_id)) if option_id else None,
                     data=option,
-                )
+                ),
             )
         data['options'] = options
         return data

@@ -1,17 +1,20 @@
+"""Модели, необходимые для работы приложения."""
 from datetime import date
 
 from django.db import models
-
 from polls import constants
 
 
 class ActivePollsManager(models.Manager):
     """Manager для активного queryset."""
+
     def get_queryset(self):
         return super().get_queryset().filter(start__lte=date.today(), end__gte=date.today())
 
 
 class Poll(models.Model):
+    """Опросы."""
+
     title = models.CharField(verbose_name='Название', max_length=200)
     start = models.DateField(verbose_name='Дата начала')
     end = models.DateField(verbose_name='Дата окончания')
@@ -37,9 +40,13 @@ class Poll(models.Model):
 
 
 class Question(models.Model):
+    """Вопросы к опросникам."""
+
     poll = models.ForeignKey(Poll, verbose_name='Опрос', on_delete=models.CASCADE, related_name='questions')
     text = models.TextField(verbose_name='Описание')
-    type = models.CharField(verbose_name='Вид ответа', choices=constants.QUESTION_TYPE, max_length=10)
+    type = models.CharField(  # noqa: VNE003,A003
+        verbose_name='Вид ответа', choices=constants.QUESTION_TYPE, max_length=10,
+    )
 
     class Meta:
         verbose_name = 'Вопрос'
@@ -55,12 +62,14 @@ class Question(models.Model):
 
 
 class AnswerOption(models.Model):
+    """Допустимые варианты ответа на вопрос."""
+
     question = models.ForeignKey(
         Question,
         verbose_name='Вопрос',
         on_delete=models.CASCADE,
         related_name='options',
-        blank=True
+        blank=True,
     )
     text = models.TextField(verbose_name='Текст')
 
@@ -74,6 +83,8 @@ class AnswerOption(models.Model):
 
 
 class Answer(models.Model):
+    """Модель для хранения ответов пользователей."""
+
     question = models.ForeignKey(
         Question,
         verbose_name='Вопрос',

@@ -1,16 +1,16 @@
 """Сериалайзер для редактирования опросов."""
 import logging
 
+from polls.models import Poll
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
-
-from polls.models import Poll
 
 logger = logging.getLogger(__name__)
 
 
 class EditPollSerializer(serializers.ModelSerializer):
     """Сериалайзер для редактирования опросов."""
+
     questions = serializers.StringRelatedField(many=True, read_only=True)
 
     class Meta:
@@ -35,6 +35,7 @@ class EditPollSerializer(serializers.ModelSerializer):
 
 class ViewPollSerializer(serializers.ModelSerializer):
     """Сериалайзер для просмотра опросов."""
+
     questions = serializers.StringRelatedField(many=True, read_only=True)
 
     class Meta:

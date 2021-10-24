@@ -1,14 +1,15 @@
 """Сериалайзеры, необходимые для отображение результатов пользователя с детализацией по опросам."""
 import logging
 
-from rest_framework import serializers
-
 from polls.models import Answer, Poll, Question
+from rest_framework import serializers
 
 logger = logging.getLogger(__name__)
 
 
 class UserAnswersSerializer(serializers.ModelSerializer):
+    """Сериалайзер для отображения ответа при отображении результатов."""
+
     answer_text = serializers.SerializerMethodField()
 
     class Meta:
@@ -21,6 +22,8 @@ class UserAnswersSerializer(serializers.ModelSerializer):
 
 
 class UserQuestionsSerializer(serializers.ModelSerializer):
+    """Сериалайзер для отображения информации о вопросе при отображении результатов."""
+
     answers = UserAnswersSerializer(many=True)
 
     class Meta:
@@ -29,6 +32,8 @@ class UserQuestionsSerializer(serializers.ModelSerializer):
 
 
 class UserPollsSerializer(serializers.ModelSerializer):
+    """Сериалайзер для отображения информации об опросе при отображении результатов."""
+
     questions = serializers.SerializerMethodField(label='Вопросы')
 
     class Meta:

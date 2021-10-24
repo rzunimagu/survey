@@ -1,9 +1,9 @@
+"""Сериалайзеры для редактирования возможных вариантов ответа."""
 import logging
 
+from polls.models import AnswerOption
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
-
-from polls.models import AnswerOption
 
 logger = logging.getLogger(__name__)
 
@@ -27,5 +27,5 @@ class AnswerOptionSerializer(serializers.ModelSerializer):
         logger.debug(f'validate: {attrs}')
         question = attrs.get('question')
         if question and not question.is_editable():
-                raise ValidationError({'question': 'Опрос закрыт для редактирования'})
+            raise ValidationError({'question': 'Опрос закрыт для редактирования'})
         return attrs

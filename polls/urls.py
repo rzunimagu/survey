@@ -13,13 +13,13 @@ admin_router = routers.DefaultRouter()
 admin_router.register('active-polls', PollEditViewset, basename='polls')
 
 admin_router.register(
-    'active-polls/(?P<poll_id>\d+)/questions',
+    r'active-polls/(?P<poll_id>\d+)/questions',
     QuestionEditViewset,
     basename='questions',
 )
 
 admin_router.register(
-    'active-polls/(?P<poll_id>\d+)/questions/(?P<question_id>\d+)/options',
+    r'active-polls/(?P<poll_id>\d+)/questions/(?P<question_id>\d+)/options',
     AnswerOptionViewset,
     basename='answer-options',
 )
@@ -29,7 +29,7 @@ user_router.register('active-polls', UserActivePollViewset, basename='user-polls
 user_router.register(
     'results',
     PollResultViewset,
-    basename='user-results'
+    basename='user-results',
 )
 
 

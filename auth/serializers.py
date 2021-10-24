@@ -1,4 +1,6 @@
+"""Сериалайзеры для редактирования."""
 import logging
+
 from django.contrib.auth import authenticate, login
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
@@ -7,6 +9,8 @@ logger = logging.getLogger(__name__)
 
 
 class UserSerializer(serializers.Serializer):
+    """Данные пользователя для логина."""
+
     username = serializers.CharField(label='username')
     password = serializers.CharField(label='password')
 
@@ -28,4 +32,3 @@ class UserSerializer(serializers.Serializer):
 
     def update(self, instance, validated_data):
         raise NotImplementedError()
-

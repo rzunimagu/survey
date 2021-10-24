@@ -1,3 +1,5 @@
+"""Константы, необходимые для работы приложения."""
+
 QUESTION_TYPE_TEXT = 'text'
 QUESTION_TYPE_SINGLE = 'single'
 QUESTION_TYPE_MULTIPLE = 'multiple'

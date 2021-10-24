@@ -1,3 +1,4 @@
+"""Подключение админки."""
 from django.contrib import admin
 
 from .models import Answer, AnswerOption, Poll, Question

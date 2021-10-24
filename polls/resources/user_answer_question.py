@@ -1,13 +1,11 @@
-import logging
-
-from rest_framework import generics, permissions
-
+"""View для принятия ответов пользователя."""
 from polls.serializers.answers_serializer import UserAnswerSerializer
-
-logger = logging.getLogger(__name__)
+from rest_framework import generics, permissions
 
 
 class UserAnswerView(generics.CreateAPIView):
+    """View для принятия ответов пользователя."""
+
     serializer_class = UserAnswerSerializer
     permission_classes = (permissions.AllowAny,)
 
