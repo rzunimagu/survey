@@ -5,5 +5,5 @@ from .resources import LoginView
 
 
 urlpatterns = [
-    path('login/', LoginView.as_view()),
+    path('login/', LoginView.as_view(), name='simple-user-login'),
 ]

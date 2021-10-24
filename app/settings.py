@@ -21,9 +21,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
-    'django_filters',
-
-    'polls.apps.AppConfig',
+    'polls.apps.PollsAppConfig',
+    'simple_auth.apps.SimpleAuthAppConfig',
 ]
 
 MIDDLEWARE = [
