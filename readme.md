@@ -16,6 +16,17 @@ docker-compose run survey python manage.py migrate
 docker-compose run survey python manage.py createsuperuser
 ```
 
+Запуск тестов: 
+```
+docker-compose run survey python manage.py test
+```
+
+Проверка flake8: 
+```
+docker-compose run survey /usr/local/bin/flake8
+```
+
+
 Запуск: 
 ```
 docker-compose run survey
